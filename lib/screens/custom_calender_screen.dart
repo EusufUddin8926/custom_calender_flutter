@@ -57,7 +57,7 @@ class _CustomCalenderScreenState extends State<CustomCalenderScreen> {
   Widget buildCalendar(DateTime month) {
     int daysInMonth = DateTime(month.year, month.month + 1, 0).day;
     DateTime firstDayOfMonth = DateTime(month.year, month.month, 1);
-    int weekdayOfFirstDay = firstDayOfMonth.weekday;
+    int weekdayOfFirstDay = (firstDayOfMonth.weekday % 7) + 1;
 
     DateTime lastDayOfPreviousMonth =
     firstDayOfMonth.subtract(const Duration(days: 1));
@@ -163,13 +163,13 @@ class _CustomCalenderScreenState extends State<CustomCalenderScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+          _buildWeekDay('Sun'),
           _buildWeekDay('Mon'),
           _buildWeekDay('Tue'),
           _buildWeekDay('Wed'),
           _buildWeekDay('Thu'),
           _buildWeekDay('Fri'),
           _buildWeekDay('Sat'),
-          _buildWeekDay('Sun'),
         ],
       ),
     );
